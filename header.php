@@ -8,7 +8,8 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.83.1">
     <title>Sticky Footer Navbar Template · Bootstrap v5.0</title>
-<link rel="stylesheet" href="boostrap.css">
+    <link rel="stylesheet" href="boostrap.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body class="d-flex flex-column h-100">
     
@@ -17,7 +18,24 @@
 <?php 
 $titre = "titre" ;
 
+
+function navigation(string $lien ,  string $title ): string {
+   $class = "";
+  if (($_SERVER['SCRIPT_NAME'] === $lien)){
+      $class = "nav-link active"  ;
+  } else {
+    $class = "nav-link";
+  }
+    return <<<html
+ <li class="nav-item">
+     <a class="$class" href="$lien">$title</a>
+     </li>;
+html;
+}
+
 ?>
+
+
   <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
@@ -27,15 +45,9 @@ $titre = "titre" ;
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-            <a class="nav-link <?php if ($_SERVER['SCRIPT_NAME'] == '/demo/header.php') : ?>  active  <?php endif ?> " aria-current="page" href="/demo/header.php">Home</a>
-          </li>
-          <li class="nav-item">
-          <a class="nav-link <?php if ($_SERVER['SCRIPT_NAME'] == '/demo/contacts.php') : ?>  active <?php endif ?> " aria-current="page" href="/demo/contacts.php">Contacts</a>
-          </li>
-          <li class="nav-item">
-          <a class="nav-link <?php if ($_SERVER['SCRIPT_NAME'] == '/demo/footer.php') : ?>  active <?php endif ?> " aria-current="page" href="/demo/footer.php">A propos</a>
-          </li>
+          <?= navigation('/header.php' , 'home')  ?>
+          <?= navigation('/contacts.php' , 'contacts') ?>
+          <?= navigation('/footer.php' , 'footer')  ?>
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -45,16 +57,13 @@ $titre = "titre" ;
     </div>
   </nav>
 
-<div class="container" style="margin-top: 15rem;">
-<p> Parceque ici nous sommes dans l'entete</p>
-</div>
+  
+
+
+
+
 </header>
     <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script> 
-  </body>
+</body>
 </html>
-
-
-
-
-?>
  
